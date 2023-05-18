@@ -4,7 +4,9 @@ import Card from "../components/card_imob";
 import Navbar from '../components/navbar';
 import Searchbar from '../components/searchbar';
 import FooterNovo from '../components/footer_NOVO';
+import axios from "axios";
 import "normalize.css";
+import { useState, useEffect } from 'react';
 
 const Container = styled.div`
   margin: 0;
@@ -20,13 +22,23 @@ const ContainerCard = styled.div`
 
 
 function Home() {
+
+  const [listImoveis, setListImoveis] = useState();
+  console.log(listImoveis)
+
+  useEffect(() => {
+    axios.get("http://localhost:3002/getCards").then((response) => {
+      setListImoveis(response.data);
+    });
+  }, []);
+
   return (
     <Container>
         <Navbar />
         <Carousel />
         <Searchbar />
       <ContainerCard>
-        <Card 
+        {/* <Card 
             propertyType="Casa" 
             address="Rua A, 123" 
             numBedrooms={3} 
@@ -52,16 +64,20 @@ function Home() {
             area={200} 
             price={2699} 
             imageUrl="casa3.jpg" 
-        />
-        <Card 
-            propertyType="Casa" 
-            address="Rua D, 456" 
-            numBedrooms={2} 
-            numBathrooms={3} 
-            area={200} 
-            price={3199} 
-            imageUrl="teste3.jpg" 
-        />
+        /> */}
+        { typeof listImoveis !== "undefined" && listImoveis.map((value) => {
+          return (
+          <Card 
+            key={value.id} 
+            listCard={listImoveis} 
+            setListCard={setListImoveis}
+            id={value.id}
+            propertyType={value.tipo}
+            area={value.endereco}
+            numBathrooms={value.dados}
+          />
+          );
+        })}
         
       </ContainerCard>
       <FooterNovo />

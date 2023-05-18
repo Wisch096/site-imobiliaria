@@ -67,17 +67,17 @@ const Price = styled.p`
   color: black;
 `;
 
-const Card = ({ propertyType, address, numBedrooms, numBathrooms, area, price, imageUrl }) => {
+const Card = ({ propertyType, address, dados, numBathrooms, area, price, imageUrl }) => {
   return (
     <CardContainer>
-      <Image src={imageUrl} alt="Imagem do imóvel" />
+      {/* <Image src={imageUrl} alt="Imagem do imóvel" /> */}
       <InfoContainer>
         <PropertyType>{propertyType}</PropertyType>
         <Address>{address}</Address>
         <DetailsContainer>
-          <Detail><Icon className="fas fa-bed" />{numBedrooms} quartos</Detail>
-          <Detail><Icon className="fas fa-bath" />{numBathrooms} banheiros</Detail>
-          <Detail><Icon className="fas fa-ruler-combined" />{area} m²</Detail>
+          <Detail><Icon className="fas fa-bed" />{dados}</Detail>
+          {/* <Detail><Icon className="fas fa-bath" />{numBathrooms} banheiros</Detail>
+          <Detail><Icon className="fas fa-ruler-combined" />{area} m²</Detail> */}
         </DetailsContainer>
         <Price>{price}</Price>
       </InfoContainer>

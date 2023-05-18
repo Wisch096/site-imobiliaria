@@ -6,6 +6,7 @@ import Blog from "../page/blog";
 import Signup from "../page/Sigup";
 import PoliticaDePrivacidade from "../page/politicadeprivacidade";
 import PainelAdmin from "../page/paineladmin";
+import CadastroImovel from "../page/cadastrodeimoveis";
 
 const Private = ({ Item }) => {
   const signed = true;
@@ -24,6 +25,7 @@ function AppRoutes() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/politicadeprivacidade" element={<PoliticaDePrivacidade />} />
         <Route path="/paineladmin" element={<Private Item={PainelAdmin}/>} />
+        <Route path="/cadastroimovel" element={<Private Item={CadastroImovel}/>} />
       </Routes>
     </BrowserRouter>
   );
