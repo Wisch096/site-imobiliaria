@@ -67,10 +67,10 @@ const Price = styled.p`
   color: black;
 `;
 
-const Card = ({ propertyType, address, dados, numBathrooms, area, price, imageUrl }) => {
+const Card = ({ propertyType, address, dados, numBathrooms, area, price, imageUrl  }) => {
   return (
     <CardContainer>
-      {/* <Image src={imageUrl} alt="Imagem do imóvel" /> */}
+      <Image src={imageUrl} alt="Imagem do imóvel" />
       <InfoContainer>
         <PropertyType>{propertyType}</PropertyType>
         <Address>{address}</Address>

@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 
 const MainContainer = styled.div`
-  width: 100%;
+  width: 80;
+  height: 80vh;
   display: flex;
   justify-content: space-between; /* Alinhamento do conteúdo */
   gap: 32px;
@@ -15,6 +16,7 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 100px;
 `;
 
 const RightContainer = styled.div`

@@ -9,6 +9,7 @@ import ansosa from "../../img/undraw_sweet_home_dkhr.svg"
         align-items: center;
         margin-top: 30px;
         font-family: 'Verdana';
+        margin-bottom: 40px;
     `;
 
     const Titulo = styled.h1`

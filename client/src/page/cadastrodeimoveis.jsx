@@ -59,28 +59,28 @@ const CadastroImovel = () => {
     const [endereco, setEndereco] = useState("");
     const [dados, setDados] = useState("");
     const [valor, setValor] = useState("");
+    const [imagem, setImagem] = useState("");
 
     const handleSubmit = (event) => {
+
         event.preventDefault();
-        
-        // Aqui você pode fazer a chamada para o banco de dados usando o Axios
-        // e enviar os dados para serem armazenados.
       
         const data = {
           tipo: tipo,
           endereco: endereco,
           dados: dados,
-          valor: valor
+          valor: valor,
+          imagem: imagem
         };
       
         axios.post("http://localhost:3002/register", data)
           .then((response) => {
             console.log(response.data);
-            // Faça qualquer ação adicional necessária após o envio dos dados
+            
           })
           .catch((error) => {
             console.error(error);
-            // Lide com o erro de forma apropriada
+            
           });
       };
 
@@ -115,7 +115,12 @@ const CadastroImovel = () => {
                 value={valor}
                 onChange={(event) => setValor(event.target.value)}
             />
-            <Input type="file" accept="image/*" />
+            <Input 
+                type="text" 
+                placeholder="imagem" 
+                value={imagem} 
+                onChange={(event) => setImagem(event.target.value)}
+            />
         </form>
         <Button onClick={handleSubmit} type="submit">Cadastrar</Button>
       </LeftContainer>

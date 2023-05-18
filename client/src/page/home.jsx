@@ -38,33 +38,6 @@ function Home() {
         <Carousel />
         <Searchbar />
       <ContainerCard>
-        {/* <Card 
-            propertyType="Casa" 
-            address="Rua A, 123" 
-            numBedrooms={3} 
-            numBathrooms={2} 
-            area={100} 
-            price={1500} 
-            imageUrl="teste1.jpg" 
-        />
-        <Card 
-            propertyType="Apartamento" 
-            address="Rua B, 234" 
-            numBedrooms={3} 
-            numBathrooms={2} 
-            area={50} 
-            price={3400} 
-            imageUrl="teste2.jpg" 
-        />
-        <Card 
-            propertyType="Casa" 
-            address="Rua C, 345" 
-            numBedrooms={4} 
-            numBathrooms={3} 
-            area={200} 
-            price={2699} 
-            imageUrl="casa3.jpg" 
-        /> */}
         { typeof listImoveis !== "undefined" && listImoveis.map((value) => {
           return (
           <Card 
@@ -73,8 +46,10 @@ function Home() {
             setListCard={setListImoveis}
             id={value.id}
             propertyType={value.tipo}
-            area={value.endereco}
-            numBathrooms={value.dados}
+            address={value.endereco}
+            dados={value.dados}
+            price={value.valor}
+            imageUrl={value.imagem}
           />
           );
         })}
