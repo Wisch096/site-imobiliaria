@@ -46,13 +46,14 @@ import ansosa from "../../img/undraw_sweet_home_dkhr.svg"
         height: 300px;
     `
 
-    function Pesquisa() {
-
-        const [searchTerm, setSearchTerm] = useState('');
-    
-        const handleChange = (event) => {
-        setSearchTerm(event.target.value);
-        };
+function Pesquisa({ onSearch }) {
+    const [searchTerm, setSearchTerm] = useState('');
+  
+    const handleChange = (event) => {
+      const value = event.target.value;
+      setSearchTerm(value);
+      onSearch(value); // Notifica a função de filtro com o novo valor do input de pesquisa
+    };
 
 
         return (
@@ -70,7 +71,7 @@ import ansosa from "../../img/undraw_sweet_home_dkhr.svg"
                 placeholder="Digite sua pesquisa"
                 value={searchTerm}
                 onChange={handleChange}
-            />
+                />
             </SearchBar>
         </Container>
         );

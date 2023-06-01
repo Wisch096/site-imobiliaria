@@ -22,38 +22,51 @@ const ContainerCard = styled.div`
 
 
 function Home() {
-
-  const [listImoveis, setListImoveis] = useState();
-  console.log(listImoveis)
+  const [listImoveis, setListImoveis] = useState([]);
+  const [filteredImoveis, setFilteredImoveis] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:3002/getCards").then((response) => {
       setListImoveis(response.data);
+      setFilteredImoveis(response.data);
     });
   }, []);
+
+  const handleSearch = (searchTerm) => {
+    if (searchTerm === '') {
+      setFilteredImoveis(listImoveis); // Mostra todos os imóveis se o campo de pesquisa estiver vazio
+    } else {
+      const filtered = listImoveis.filter((value) => {
+        return (
+          value.tipo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          value.endereco.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      });
+      setFilteredImoveis(filtered);
+    }
+  };
 
   return (
     <Container>
         <Navbar />
         <Carousel />
-        <Searchbar />
+        <Searchbar onSearch={handleSearch} />
       <ContainerCard>
-        { typeof listImoveis !== "undefined" && listImoveis.map((value) => {
+        {filteredImoveis.map((value) => {
           return (
-          <Card 
-            key={value.id} 
-            listCard={listImoveis} 
-            setListCard={setListImoveis}
-            id={value.id}
-            propertyType={value.tipo}
-            address={value.endereco}
-            dados={value.dados}
-            price={value.valor}
-            imageUrl={value.imagem}
-          />
+            <Card
+              key={value.id}
+              listCard={filteredImoveis}
+              setListCard={setFilteredImoveis}
+              id={value.id}
+              propertyType={value.tipo}
+              address={value.endereco}
+              dados={value.dados}
+              price={value.valor}
+              imageUrl={value.imagem}
+            />
           );
         })}
-        
       </ContainerCard>
       <FooterNovo />
     </Container>
